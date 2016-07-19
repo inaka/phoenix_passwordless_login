@@ -24,4 +24,18 @@ defmodule PasswordlessLoginApp.SessionController do
         render(conn, "new.html", changeset: changeset)
     end
   end
+
+  def show(conn, %{"id" => access_token}) do
+    case Repo.get_by(User, access_token: access_token) do
+      nil ->
+        conn
+        |> put_flash(:error, "Access token not found or expired.")
+        |> redirect(to: page_path(conn, :index))
+      user ->
+        conn
+        |> put_session(:user_id, user.id)
+        |> put_flash(:info, "Welcome #{user.email}")
+        |> redirect(to: page_path(conn, :index))
+    end
+  end
 end

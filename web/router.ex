@@ -17,7 +17,7 @@ defmodule PasswordlessLoginApp.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    resources "/session", SessionController, only: [:new, :create]
+    resources "/session", SessionController, only: [:new, :create, :show]
   end
 
   # Other scopes may use custom stacks.
