@@ -1,6 +1,6 @@
 defmodule PasswordlessLoginApp.SessionController do
   use PasswordlessLoginApp.Web, :controller
-  alias PasswordlessLoginApp.User
+  alias PasswordlessLoginApp.{SimpleAuth, User}
 
   def new(conn, _params) do
     changeset = User.changeset(%User{})
@@ -37,5 +37,12 @@ defmodule PasswordlessLoginApp.SessionController do
         |> put_flash(:info, "Welcome #{user.email}")
         |> redirect(to: page_path(conn, :index))
     end
+  end
+
+  def delete(conn, _params) do
+    conn
+    |> SimpleAuth.logout()
+    |> put_flash(:info, "User logged out.")
+    |> redirect(to: page_path(conn, :index))
   end
 end

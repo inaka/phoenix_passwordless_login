@@ -18,6 +18,7 @@ defmodule PasswordlessLoginApp.Router do
 
     get "/", PageController, :index
     resources "/session", SessionController, only: [:new, :create, :show]
+    resources "/session", SessionController, only: [:delete], singleton: true
   end
 
   # Other scopes may use custom stacks.
