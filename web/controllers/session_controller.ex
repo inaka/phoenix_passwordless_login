@@ -34,7 +34,7 @@ defmodule PasswordlessLoginApp.SessionController do
         |> redirect(to: page_path(conn, :index))
       user ->
         conn
-        |> put_session(:user_id, user.id)
+        |> SimpleAuth.login(user)
         |> put_flash(:info, "Welcome #{user.email}")
         |> redirect(to: page_path(conn, :index))
     end
