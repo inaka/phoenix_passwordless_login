@@ -62,4 +62,9 @@ config :logger, level: :info
 
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
+
+config :passwordless_login_app,
+       mailgun_domain: System.get_env("MAILGUN_DOMAIN"),
+       mailgun_key: System.get_env("MAILGUN_API_KEY")
+
 import_config "prod.secret.exs"

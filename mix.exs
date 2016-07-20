@@ -38,6 +38,8 @@ defmodule PasswordlessLoginApp.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:secure_random, "~> 0.5"},
+     {:mailgun, "~> 0.1.2"},
+     {:poison, "~> 2.1", override: true},
      {:cowboy, "~> 1.0"}]
   end
 
