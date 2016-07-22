@@ -8,6 +8,10 @@ defmodule PasswordlessLoginApp.Mailer do
     send_email to: email,
     from: "noreplay@example.com",
     subject: "Your token",
-    text: "Access your account #{Router.Helpers.session_url(Endpoint, :show, token)}"
+    text: "Access your account #{token_url(token)}"
+  end
+
+  defp token_url(token) do
+    Router.Helpers.session_url(Endpoint, :show, token)
   end
 end
