@@ -8,9 +8,10 @@ defmodule PasswordlessLoginApp.SessionController do
   end
 
   def create(conn, %{"user" => user_params}) do
+    user_email = String.downcase(user_params["email"])
     user_struct =
-      case Repo.get_by(User, email: user_params["email"]) do
-        nil -> %User{email: user_params["email"]}
+      case Repo.get_by(User, email: user_email) do
+        nil -> %User{email: user_email}
         user -> user
       end
       |> User.registration_changeset(user_params)
